@@ -3,7 +3,7 @@ var multer = require('multer');
 var app = express();
 var done = false;
 
-app.use(multer({ dest: './uploads/',
+app.use(multer({ dest: '/var/art-receiver-images/',
                  rename: function (fieldname, filename) {
                      return filename+Date.now();
                  },
