@@ -17,8 +17,10 @@ app.use(multer({ dest: '/var/art-receiver-images/',
                      var year = date.getFullYear();
                      var month = date.getMonth() + 1;
                      var day = date.getDate();
+                     var min = date.getMinutes();
+                     var sec = date.getSeconds();
 
-                     return year+ "-" +month+ "-" +day+ "-" +username+ "-" +filename;
+                     return year+ "-" +month+ "-" +day+ "-" +min+sec+ "-" +username+ "-" +filename;
                  },
                  onFileUploadStart: function (file) {
                      console.log(file.originalname + ' is starting ...')
