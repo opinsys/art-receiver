@@ -5,8 +5,21 @@ var serveStatic = require("serve-static");
 var done = false;
 
 app.use(multer({ dest: '/var/art-receiver-images/',
-                 rename: function (fieldname, filename) {
-                     return filename+Date.now();
+                 rename: function (fieldname, filename, req, res) {
+                     console.log("rename");
+                     console.log(filename);
+                     var username = req.body.name;
+                     username = username.replace(/ /g, '_');
+                     username = username.replace(/[^a-zA-Z_]/g, '');
+
+                     filename = filename.replace(/[^a-zA-Z_]/g, '');
+
+                     var date = new Date();
+                     var year = date.getFullYear();
+                     var month = date.getMonth() + 1;
+                     var day = date.getDate();
+
+                     return year+ "-" +month+ "-" +day+ "-" +username+ "-" +filename;
                  },
                  onFileUploadStart: function (file) {
                      console.log(file.originalname + ' is starting ...')
