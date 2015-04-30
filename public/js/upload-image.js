@@ -32,15 +32,6 @@ $(document).ready(function (e) {
     var file = this.files[0];
     var match = ["image/jpeg", "image/png", "image/jpg"];
 
-    if ( !( (file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]) ) )
-    {
-      noPreview();
-
-      $('#message').html('<div class="alert alert-warning" role="alert">Tiedoston tyyppi on virheellinen. Seuraavat tiedoston tyypit ovat sallittuja: JPG, JPEG, PNG.</div>');
-
-      return false;
-    }
-
     if ( file.size > maxsize )
     {
       noPreview();
@@ -52,9 +43,14 @@ $(document).ready(function (e) {
 
     $('#upload-button').removeAttr("disabled");
 
-    var reader = new FileReader();
-    reader.onload = selectImage;
-    reader.readAsDataURL(this.files[0]);
+    if ( !( (file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]) ) )
+    {
+      noPreview();
+    } else {
+        var reader = new FileReader();
+        reader.onload = selectImage;
+        reader.readAsDataURL(this.files[0]);
+    }
 
   });
 
