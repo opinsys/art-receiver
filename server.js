@@ -6,8 +6,6 @@ var done = false;
 
 app.use(multer({ dest: '/var/art-receiver-images/',
                  rename: function (fieldname, filename, req, res) {
-                     console.log("rename");
-                     console.log(filename);
                      var username = req.body.name;
                      username = username.replace(/ /g, '_');
                      username = username.replace(/[^a-zA-Z_]/g, '');
